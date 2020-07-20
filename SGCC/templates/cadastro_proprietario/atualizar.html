@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Atualizar - {{ proprietario['nome'] }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+
+    <label for="nome">Nome*</label>
+    <input name="nome" id="nome" value="{{ request.form['nome'] or proprietario['nome']}}" required>
+
+    <label for="RG">RG*</label>
+    <input name="RG" id="RG" value="{{ request.form['RG'] or proprietario['RG']}}" required>
+
+    <label for="CPF_CNPJ">CPF/CNPJ*</label>
+    <input name="CPF_CNPJ" id="CPF_CNPJ" value="{{ request.form['CPF_CNPJ'] or proprietario['CPF_CNPJ']}}" required>
+
+    <label for="razao_social">Razão Social</label>
+    <input name="razao_social" id="razao_social" value="{{ request.form['razao_social'] or proprietario['razao_social']}}">
+
+    <label for="estado">Estado*</label>
+    <input name="estado" id="estado" value="{{ request.form['estado'] or proprietario['estado_de_moradia']}}" required>
+
+    <label for="cidade">Cidade*</label>
+    <input name="cidade" id="cidade" value="{{ request.form['cidade'] or proprietario['cidade_de_moradia']}}" required>
+
+    <label for="endereco">Endereco*</label>
+    <input name="endereco" id="endereco" value="{{ request.form['endereco'] or proprietario['endereco_de_moradia']}}" required>
+
+    <label for="numero">Número*</label>
+    <input name="numero" id="numero" value="{{ request.form['numero'] or proprietario['numero_de_moradia']}}" required>
+
+    <label for="complemento">Complemento</label>
+    <input name="complemento" id="complemento" value="{{ request.form['complemento'] or proprietario['complemento_endereco']}}">
+
+    <label for="telefone">Telefone*</label>
+    <input name="telefone" id="telefone" value="{{ request.form['telefone'] or proprietario['telefone']}}" required>
+
+    <label for="celular">Celular*</label>
+    <input name="celular" id="celular" value="{{ request.form['celular'] or proprietario['celular']}}" required>
+
+    <label for="email">Email*</label>
+    <input name="email" id="email" value="{{ request.form['email'] or proprietario['email']}}" required>
+
+    <label for="liberar_acesso">Liberar acesso</label>
+    <input type="checkbox" id="liberar_acesso" name="liberar_acesso" value="liberar_acesso"
+           {{'checked="checked"' if proprietario['liberar_acesso'] else ""}}>
+
+    <input type="submit" value="Atualizar">
+  </form>
+  <hr>
+  <form action="{{ url_for('cadastro_proprietario.deletar', id=proprietario['cod_proprietario']) }}" method="post">
+    <input class="danger" type="submit" value="Deletar" onclick="return confirm('Você tem certeza?');">
+  </form>
+{% endblock %}

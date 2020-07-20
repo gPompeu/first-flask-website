@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Cadastro de proprietários{% endblock %}</h1>
+  {% if g.usuario %}
+    <a class="action" href="{{ url_for('cadastro_proprietario.cadastrar') }}">Novo</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for proprietario in proprietarios %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ proprietario['nome'] }}</h1>
+          <div class="about">cadastrado por {{ proprietario['nome_usuario'] }}
+            na data de {{ proprietario['data_cadastro'].strftime('%Y-%m-%d') }}
+          </div>
+        </div>
+        {% if g.usuario['id'] == proprietario['id_autor'] %}
+          <a class="action" href="{{ url_for('cadastro_proprietario.atualizar', id=proprietario['cod_proprietario']) }}">
+            Atualizar
+          </a>
+        {% endif %}
+      </header>
+      <p class="body">{{ proprietario['razao_social'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Novo proprietário{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+
+    <label for="nome">Nome*</label>
+    <input name="nome" id="nome" value="{{ request.form['nome'] }}" required>
+
+    <label for="RG">RG*</label>
+    <input name="RG" id="RG" value="{{ request.form['RG'] }}" required>
+
+    <label for="CPF_CNPJ">CPF/CNPJ*</label>
+    <input name="CPF_CNPJ" id="CPF_CNPJ" value="{{ request.form['CPF_CNPJ'] }}" required>
+
+    <label for="razao_social">Razão Social</label>
+    <input name="razao_social" id="razao_social" value="{{ request.form['razao_social'] }}">
+
+    <label for="estado">Estado*</label>
+    <input name="estado" id="estado" value="{{ request.form['estado'] }}" required>
+
+    <label for="cidade">Cidade*</label>
+    <input name="cidade" id="cidade" value="{{ request.form['cidade'] }}" required>
+
+    <label for="endereco">Endereco*</label>
+    <input name="endereco" id="endereco" value="{{ request.form['endereco'] }}" required>
+
+    <label for="numero">Número*</label>
+    <input name="numero" id="numero" value="{{ request.form['numero'] }}" required>
+
+    <label for="complemento">Complemento</label>
+    <input name="complemento" id="complemento" value="{{ request.form['complemento'] }}">
+
+    <label for="telefone">Telefone*</label>
+    <input name="telefone" id="telefone" value="{{ request.form['telefone'] }}" required>
+
+    <label for="celular">Celular*</label>
+    <input name="celular" id="celular" value="{{ request.form['celular'] }}" required>
+
+    <label for="email">Email*</label>
+    <input name="email" id="email" value="{{ request.form['email'] }}" required>
+
+    <label for="liberar_acesso">Liberar acesso</label>
+    <input type="checkbox" id="liberar_acesso" name="liberar_acesso">
+
+    <input type="submit" value="Cadastrar">
+  </form>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<title>{% block title %}{% endblock %} - SGCC</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<nav>
+  <h1>SGCC - Cadastro de proprietário</h1>
+  <ul>
+    {% if g.usuario %}
+      <li><span>{{ g.usuario['nome_usuario'] }}</span>
+      <li><a href="{{ url_for('autorizacao.sair') }}">Sair</a>
+    {% else %}
+      <li><a href="{{ url_for('autorizacao.registrar_se') }}">Registrar-se</a>
+      <li><a href="{{ url_for('autorizacao.entrar') }}">Entrar</a>
+    {% endif %}
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
